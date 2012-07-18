@@ -1,2 +1,1 @@
-<?php
-//TODO Create a default header.
+Default header<br>
