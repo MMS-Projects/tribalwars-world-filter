@@ -1,6 +1,6 @@
 <?php
-define('ROOT', dirname(dirname(__FILE__)));
+define("ROOT", dirname(dirname(__FILE__)));
 
-$url = $_GET['url'];
+$url = $_GET["url"];
 
-require_once (ROOT . '/library/bootstrap.php');
+require_once (ROOT . "/library/bootstrap.php");
