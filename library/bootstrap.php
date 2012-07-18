@@ -21,4 +21,5 @@ function getAutoloadFileName ($name) {
 function __autoload ($name) {
 	$filename = getAutoloadFileName ($name);
 	if (!$filename) return;
+	require_once $filename;
 }
