@@ -33,7 +33,7 @@ class Zend_View_Helper_Sidebar extends Zend_View_Helper_Placeholder_Container_St
             $this->_headerInflectorTarget
         );
         $this->_headerInflector->setRules(array(
-            'title' => 'a',
+            'title' => null,
         ));
         parent::__construct();
     }
