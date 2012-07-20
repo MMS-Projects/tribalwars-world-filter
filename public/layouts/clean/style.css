@@ -1,0 +1,13 @@
+body {
+    margin: 0px; 
+}
+div.filter {
+    border-width: 2px;
+    border-style: solid;
+    margin-bottom: 20px;
+}
+
+div.filter h5 {
+    color: #00B64F;
+    margin: 0px;
+}

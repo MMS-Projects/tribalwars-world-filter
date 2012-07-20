@@ -1,0 +1,36 @@
+<?php
+// setting the controller and action name as title segments:
+$request = Zend_Controller_Front::getInstance()->getRequest();
+$this->headTitle()->append(
+    '(' . $request->getActionName() . '/' . $request->getControllerName() . ')'
+);
+
+$this->headTitle()->prepend('Tribal Wars Filter');
+$this->headTitle()->setSeparator(' :: ');
+
+$this->headMeta()
+    ->appendName('description', 'website description')
+    ->appendName('keywords', 'website keywords, website keywords')
+    //->setCharset('UTF-8') <-- Doesn't work so lets use httpEquiv
+    ->appendHttpEquiv('content-type', 'text/html; charset=windows-1252');
+
+$this->headScript()->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
+
+$this->headLink()->appendStylesheet($this->baseUrl('layouts/clean/style.css'));
+?>
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <?php echo $this->headTitle() ?>
+  <?php echo $this->headMeta() ?>
+  <?php echo $this->headLink() ?>
+  <?php echo $this->headScript() ?>
+</head>
+
+<body>
+    <button id="build">Build</button>
+    <button id="clean">Clean</button>
+    <?php echo $this->filterWidget() ?>
+</body>
+</html>
