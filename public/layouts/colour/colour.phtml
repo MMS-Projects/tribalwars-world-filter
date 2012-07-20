@@ -45,6 +45,8 @@ EOT;
 $this->sidebar()->append($news,  'Latest news');
 $this->sidebar()->append($links, 'Useful links');
 $this->sidebar()->append($form,  'Search');
+
+$this->headScript()->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
 ?>
 <!DOCTYPE HTML>
 <html>
