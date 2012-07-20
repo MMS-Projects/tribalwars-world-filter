@@ -3,6 +3,11 @@
 class ErrorController extends Zend_Controller_Action
 {
 
+    public function init()
+    {
+        $this->view->headTitle()->prepend('Error'); 
+    }
+
     public function errorAction()
     {
         $errors = $this->_getParam('error_handler');
