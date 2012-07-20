@@ -9,7 +9,7 @@ $this->headTitle()->prepend('Tribal Wars Filter');
 $this->headTitle()->setSeparator(' :: ');
 
 
-$this->headLink()->appendStylesheet('/layouts/colour/style.css');
+$this->headLink()->appendStylesheet($this->baseUrl('layouts/colour/style.css'));
 
 $this->headMeta()
     ->appendName('description', 'website description')
@@ -38,7 +38,7 @@ $form = <<<EOT
     <form method="post" action="#" id="search_form">
       <p>
         <input class="search" type="text" name="search_field" value="Enter keywords....." />
-        <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="/layouts/colour/search.png" alt="Search" title="Search" />
+        <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="{$this->baseUrl('layouts/colour/search.png')}" alt="Search" title="Search" />
       </p>
     </form>
 EOT;
