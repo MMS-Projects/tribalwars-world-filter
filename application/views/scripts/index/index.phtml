@@ -1,2 +1,3 @@
 <?php
-echo "Welcome to the homepage :) Time: " . date("H:i:s") . "<br>";
+echo "Welcome to the homepage :) Time: " . Zend_Date::now()->get(Zend_Date::TIMES);
+
