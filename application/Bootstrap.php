@@ -26,7 +26,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->bootstrap('FrontController');
         
         $front = $this->getResource('frontController');
-        $front->registerPlugin(new Application_Plugin_NavigationTitle());
+        $front->registerPlugin(new Application_Plugin_NavigationTitle())
+            ->registerPlugin(new Application_Plugin_SubdomainLanguage());
     }
 
 }
