@@ -1,4 +1,9 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>FilterPage</b> and script/action name <b>index</b></p>
-</div>
+<?php
+$this->sidebar()->prepend(
+    $this->filterWidget(), $this->translate('World filter')
+);
+$this->headScript()->appendFile(
+    $this->baseUrl('scripts/filter.js')
+);
+?>
+<p>View script for controller <b>FilterPage</b> and script/action name <b>index</b></p>

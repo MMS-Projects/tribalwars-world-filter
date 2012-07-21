@@ -129,15 +129,15 @@ ol li
   padding: 0;
   background: #29415D url(menu.png) repeat-x;} 
 
-ul#menu, ul#menu li
+ul.menu, ul.menu li
 { float: left;
   margin: 0; 
   padding: 0;}
 
-ul#menu li
+ul.menu li
 { list-style: none;}
 
-ul#menu li a
+ul.menu li a
 { letter-spacing: 0.1em;
   font: normal 100% 'lucida sans unicode', arial, sans-serif;
   display: block; 
@@ -150,7 +150,7 @@ ul#menu li a
   text-decoration: none;
   background: transparent;} 
 
-ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
+ul.menu li a:hover, ul.menu li.active a, ul.menu li.active a:hover
 { color: #FFF;
   background: #1C2C3E url(menu_select.png) repeat-x;}
 
