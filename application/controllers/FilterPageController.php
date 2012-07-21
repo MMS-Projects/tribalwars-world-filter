@@ -6,7 +6,6 @@ class FilterPageController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
-        $this->view->headTitle()->prepend('Filter page');  
         $this->view->sidebar()->prepend(
             $this->view->filterWidget(), $this->view->translate('World filter')
         );

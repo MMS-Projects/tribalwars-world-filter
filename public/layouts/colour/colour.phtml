@@ -1,11 +1,5 @@
 <?php
-// setting the controller and action name as title segments:
-$request = Zend_Controller_Front::getInstance()->getRequest();
-$this->headTitle()->append(
-    '(' . $request->getActionName() . '/' . $request->getControllerName() . ')'
-);
-
-$this->headTitle()->prepend('Tribal Wars Filter');
+$this->headTitle()->append('Tribal Wars Filter');
 $this->headTitle()->setSeparator(' :: ');
 
 
@@ -69,14 +63,10 @@ $this->headScript()->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1
         </div>
       </div>
       <div id="menubar">
-        <ul id="menu">
-          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="selected"><a href="index.html"><?php echo $this->translate('Home'); ?></a></li>
-          <li><a href="examples.html">Examples</a></li>
-          <li><a href="page.html">A Page</a></li>
-          <li><a href="another_page.html">Another Page</a></li>
-          <li><a href="contact.html"><?php echo $this->translate('Contact us'); ?></a></li>
-        </ul>
+        <!-- put class="active" in the li tag for the selected page - to highlight which page you're on -->
+        <?php 
+            echo $this->navigation()->menu()->setUlClass('menu');
+          ?>
       </div>
     </div>
     <div id="site_content">
