@@ -8,7 +8,7 @@ class FilterPageController extends Zend_Controller_Action
         /* Initialize action controller here */
         $this->view->headTitle()->prepend('Filter page');  
         $this->view->sidebar()->prepend(
-            $this->view->filterWidget(), 'World filter'
+            $this->view->filterWidget(), $this->view->translate('World filter')
         );
         $this->view->headScript()->appendFile(
             $this->view->baseUrl('scripts/filter.js')
