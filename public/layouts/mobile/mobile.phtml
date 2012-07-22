@@ -1,0 +1,48 @@
+<?php
+$this->headLink()->appendStylesheet($this->baseUrl('layouts/mobile/lib/sencha-touch.css'));
+$this->headLink()->appendStylesheet($this->baseUrl('layouts/mobile/styles.css'));
+
+$this->headMeta()
+    ->appendName('description', 'website description')
+    ->appendName('keywords', 'website keywords, website keywords')
+    //->setCharset('UTF-8') <-- Doesn't work so lets use httpEquiv
+    ->appendHttpEquiv('content-type', 'text/html; charset=utf-8');
+    
+$this->headScript()->prependFile($this->baseUrl('layouts/mobile/app/app.js'));
+$this->headScript()->prependFile($this->baseUrl('layouts/mobile/lib/sencha-touch-debug.js'));
+
+$this->headScript()->appendScript($this->navigation()->menu()->setPartial('mobile/menu.phtml'));
+$this->headScript()->appendFile($this->baseUrl('layouts/mobile/app/views/HtmlPage.js'));
+    $i = 0;
+    foreach ($this->navigation()->getContainer() as $pageId => $page) {
+        $data = null;
+        if ($page->isActive()) {
+            $data = $this->layout()->content;            
+        }
+        $this->navigation()->findOneBy('label', $page->label)->data = $data;
+        ++$i;
+    }
+?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tribal Wars Filter</title>
+  <?php echo $this->headMeta() ?>
+  <?php echo $this->headLink() ?>
+  <?php echo $this->headScript() ?>
+  <!--<link rel="stylesheet" href="/layouts/mobile/lib/sencha-touch.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="/layouts/mobile/stylesheets/styles.css" type="text/css" media="screen"/>
+
+  <script src="/layouts/mobile/lib/sencha-touch-debug.js" type="text/javascript"></script>
+  <!-- app, models, stores, views, controllers [in that order!] --/>
+  <script src="/layouts/mobile/app/app.js" type="text/javascript"></script>
+  <script><?php 
+            //echo $this->navigation()->menu()->setPartial('mobile/menu.phtml');
+          ?></script>
+  <script src="/layouts/mobile/app/views/HtmlPage.js" type="text/javascript"></script>-->
+
+</head>
+<body>
+
+</body>
+</html>

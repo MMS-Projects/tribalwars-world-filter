@@ -1,0 +1,44 @@
+App.views.Viewport = Ext.extend(Ext.Carousel, {
+    fullscreen: true,
+    <?php 
+        $i = 0;
+        foreach ($this->container as $page) {
+            if ($page->isActive()) {
+                break;
+            }
+            ++$i;
+        }
+        echo 'activeItem: ' . $i . ',';
+    ?>
+    initComponent: function() {
+        Ext.apply(this, {
+
+            defaults: {
+                xtype: 'htmlpage',
+                artist: 'Dale Adcock',
+                url: 'http://daleadcock.com/index.php?/p/p/',
+                medium: 'oil on linen'
+            },
+
+            items: [
+<?php
+foreach ($this->container as $page) 
+{
+    $page->setParams(array('ajax' => 'Jup'));
+?>
+{
+slug: <?php echo json_encode($page->getLabel()); ?>,
+title: <?php echo json_encode($this->translate($page->getLabel())); ?>,
+url: <?php echo json_encode($page->getHref()); ?>,
+data: 'Loading...',
+activePage: <?php echo ($page->isActive()) ? 'true' : 'false' ?>
+},
+<?
+}
+?>
+
+            ],
+        });
+        App.views.Viewport.superclass.initComponent.apply(this, arguments);
+    }
+});

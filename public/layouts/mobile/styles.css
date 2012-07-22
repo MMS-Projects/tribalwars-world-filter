@@ -1,0 +1,19 @@
+html, .x-fullscreen {
+  background-color: #fff;
+}
+
+.pagecard {
+  background-color: black;
+  background-image: url('bg-tile.jpg');
+}
+.page .x-html,
+.page .x-html a,
+.page .x-html h1,
+.page .x-html h2,
+.page .x-html h3 {
+    color: #000000;
+}
+
+.x-html {
+    font-size: 14px;
+}
