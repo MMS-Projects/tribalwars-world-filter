@@ -1,7 +1,19 @@
-
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
+
+<IfModule pagespeed_module>
+    ModPagespeed on
+    
+    ModPagespeedEnableFilters combine_css
+    ModPagespeedEnableFilters inline_css
+    ModPagespeedEnableFilters rewrite_javascript
+    ModPagespeedEnableFilters rewrite_images
+    ModPagespeedEnableFilters convert_meta_tags
+    ModPagespeedEnableFilters remove_comments
+    ModPagespeedEnableFilters collapse_whitespace
+    ModPagespeedEnableFilters extend_cache
+</IfModule>
