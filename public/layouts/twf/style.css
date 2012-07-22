@@ -15,6 +15,7 @@ body {
 }
 #real-content {
     overflow: hidden;
+    font-family: 'Lucida Blackletter', 'UnifrakturCook', 'Olde English', cursive;
 }
 #container {
     position: relative;
@@ -30,6 +31,11 @@ body {
 }
 #content {
     padding: 20px;
+    
+}
+#content:first-letter {
+    font-size: 2em;
+    font-family: 'Times New Roman';
 }
 #menu-bar {
     padding: 0;
