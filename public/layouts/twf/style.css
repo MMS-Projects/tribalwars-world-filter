@@ -1,0 +1,111 @@
+@font-face {  
+  font-family: 'Olde English';  
+  src: url('OldeEnglish.ttf') format("truetype");  
+}
+
+
+body {
+    background-image: url('bg-tile.jpg');
+    margin: 0px;
+}
+.golden-bar {
+    background-image: url('borderGold-horizontal-tile.jpg');
+    height: 11px;
+    width: 100%;
+}
+#real-content {
+    overflow: hidden;
+}
+#container {
+    position: relative;
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: brown;
+    background: #1C2C3E url('brown-yellow-pattern.png') repeat;
+}
+#sidebar {
+    float: right;
+    width: 25%;
+    padding: 10px 25px;
+}
+#content {
+    padding: 20px;
+}
+#menu-bar {
+    padding: 0;
+    background: #29415D url('dark_pattern-tile.png') repeat;
+} 
+
+ul.menu, ul.menu li {
+    margin: 0; 
+    padding: 0;
+    overflow: hidden;
+}
+
+ul.menu li {
+    float: left; 
+    list-style: none;
+}
+
+ul.menu li a {
+    letter-spacing: 0.1em;
+    font: normal 100% 'lucida sans unicode', arial, sans-serif;
+    display: block;
+    height: 37px;
+    padding: 29px 26px 6px 26px;
+    text-align: center;
+    color: #FFF;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: transparent;
+} 
+
+ul.menu li a:hover, ul.menu li.active a, ul.menu li.active a:hover {
+    color: #FFF;
+    background: #1C2C3E url('blue-pattern.png') repeat;
+}
+
+#header {
+    margin-left: auto;
+    margin-right: auto;
+    /*text-align: center;*/
+    font-family: 'Lucida Blackletter', 'UnifrakturCook', 'Olde English', cursive;
+    color: #b79e3a;
+    padding-left: 50px;
+    /*text-shadow: -1px 0 #4c3d16, 0 5px black, 5px 0 #4c3d16, 0 -1px black;
+    text-shadow: 4px 5px 2px #4C3D16;*/
+    text-shadow: 5px 3px 2px rgba(76, 61, 22, 0.86);
+}
+
+#header h1 {
+    font-size: 3em;
+    margin: 0px;
+}
+
+#header h2 {
+    font-size: 2em;
+    margin: 0px;
+    padding-left: 50px;
+}
+
+#footer {
+    position: relative;
+    top: 20px;
+    width: 100%;
+    /*text-transform: uppercase;*/
+    font: normal 100% 'lucida sans unicode', arial, sans-serif;
+    color: #FFF;
+    background-image: url('blue-pattern.png');
+    padding: 24px 0 24px 0;
+    text-align: center; 
+}
+
+#footer a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+#footer a:hover {
+    color: #FFF;
+    text-decoration: underline;
+}
