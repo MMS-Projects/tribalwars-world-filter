@@ -1,0 +1,38 @@
+<?php
+$this->headLink()->appendStylesheet($this->baseUrl('layouts/mobile/lib/sencha-touch.css'));
+$this->headLink()->appendStylesheet($this->baseUrl('layouts/mobile/styles.css'));
+
+$this->headMeta()
+    ->appendName('description', 'website description')
+    ->appendName('keywords', 'website keywords, website keywords')
+    //->setCharset('UTF-8') <-- Doesn't work so lets use httpEquiv
+    ->appendHttpEquiv('content-type', 'text/html; charset=utf-8');
+    
+$this->headScript()->prependFile($this->baseUrl('layouts/mobile/app/app.js'));
+$this->headScript()->prependFile('http://cdn.sencha.io/touch/1.1.0/sencha-touch.js');
+
+$this->headScript()->appendScript($this->navigation()->menu()->setPartial('mobile/menu.phtml'));
+$this->headScript()->appendFile($this->baseUrl('layouts/mobile/app/views/HtmlPage.js'));
+
+$i = 0;
+foreach ($this->navigation()->getContainer() as $pageId => $page) {
+    $data = null;
+    if ($page->isActive()) {
+        $data = $this->layout()->content;            
+    }
+    $this->navigation()->findOneBy('label', $page->label)->data = $data;
+    ++$i;
+}
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tribal Wars Filter</title>
+        <?php echo $this->headMeta() ?>
+        <?php echo $this->headLink() ?>
+        <?php echo $this->headScript() ?>
+    </head>
+    
+    <body>
+    </body>
+</html>

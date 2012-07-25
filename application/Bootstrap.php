@@ -27,6 +27,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         
         $front = $this->getResource('frontController');
         $front->registerPlugin(new Application_Plugin_NavigationTitle())
+            ->registerPlugin(new Application_Plugin_MobileDeviceLayout())
+            ->registerPlugin(new Application_Plugin_AjaxRequest())
             ->registerPlugin(new Application_Plugin_SubdomainCountry());
     }
 

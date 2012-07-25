@@ -1,3 +1,4 @@
 <?php
 echo "Welcome to the homepage :) Time: " . Zend_Date::now()->get(Zend_Date::TIMES);
-
+?><br>
+To start filtering <a href="<?php echo $this->url(array('controller' => 'filter-page')); ?>">click here!</a>
