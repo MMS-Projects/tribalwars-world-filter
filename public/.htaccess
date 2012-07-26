@@ -6,7 +6,7 @@ RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
 
 <IfModule pagespeed_module>
-    ModPagespeed on
+    ModPagespeed off
     
     ModPagespeedEnableFilters combine_css
     ModPagespeedEnableFilters inline_css
