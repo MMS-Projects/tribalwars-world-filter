@@ -31,6 +31,17 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             ->registerPlugin(new Application_Plugin_AjaxRequest())
             ->registerPlugin(new Application_Plugin_SubdomainCountry());
     }
+    
+    public function _initRoutes()
+    {
+        $router = Zend_Controller_Front::getInstance()->getRouter();
+        $router->addRoute(
+            'robots',
+            new Zend_Controller_Router_Route('/robots.txt',
+                array('controller' => 'Robots', 'action' => 'robots')
+            )
+        );
+    }
 
 }
 
