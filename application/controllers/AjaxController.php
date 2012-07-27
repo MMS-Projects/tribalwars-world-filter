@@ -7,9 +7,10 @@ class AjaxController extends Zend_Controller_Action
     public function init()
     {
     	$this->worlds = self::getAvailableWorlds();
+    	$this->view->layout()->setLayout('ajax');
     }
     
-    public function filterworldsAction()
+    public function filterWorldsAction()
     {
 		$this->view->worlds = $this->worlds;
     }
