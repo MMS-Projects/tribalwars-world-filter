@@ -114,3 +114,33 @@ ul.menu li a:hover, ul.menu li.active a, ul.menu li.active a:hover {
     color: #FFF;
     text-decoration: underline;
 }
+
+ul.language-bar, ul.language-bar li {
+    font-family: 'Lucida Blackletter', 'UnifrakturCook', 'Olde English', cursive;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0;
+    overflow: hidden;
+    text-transform: uppercase;
+    background: #29415D url('dark_pattern-tile.png') repeat;
+}
+
+ul.language-bar li {
+    float: left; 
+    list-style: none;
+    margin: 0px 15px 0px 0px;
+}
+
+ul.language-bar li a {
+    letter-spacing: 0.1em;
+    display: block;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    background: transparent;
+} 
+
+ul.language-bar li a:hover, ul.language-bar li.active a, ul.language-bar a:hover {
+    color: #FFF;
+    background: #1C2C3E url('blue-pattern.png') repeat;
+}

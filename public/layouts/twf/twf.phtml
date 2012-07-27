@@ -61,6 +61,8 @@ $this->headScript()->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1
         </div>
         <div id="container">
             <div class="golden-bar"></div>
+            <?php echo $this->languageBar(array('nl', 'us', 'de', 'fr')); ?>
+            <div class="golden-bar"></div>
             <div id="menu-bar">
                 <?php 
                     echo $this->navigation()->menu()->setUlClass('menu');
