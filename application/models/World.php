@@ -6,6 +6,6 @@ class Application_Model_World {
 	public function randomize ()
 	{
 		$this->speed     = 1.0 + rand(0, 2) * 0.5;
-		$this->unitspeed = 1 / (rand(1, 3)); 
+		$this->unitspeed = rand(1, 3) * (1 / 3);
 	}
 }
