@@ -1,3 +1,17 @@
+function FilterView(vars)
+{
+    var html = '<h5 class="filter">' + vars.title + '</h5><select>';
+    for (optionId in vars.options) {
+        var id = 'option-' + Math.floor(Math.random()*5000),
+            value = vars.options[optionId].value;
+        html += '<option id="' + id + '" value="' + value + '">';
+        html += vars.options[optionId].text;
+        html += '</option>';
+    }
+    html += '</select>';
+    return html;
+}
+
 var filters = [
     new Filter(
         'With or without paladin?',
@@ -32,33 +46,12 @@ function Option(answer, value) {
 };
 
 function build() {
+    var view = null;
     for (var i = 0; i < filters.length; i++) {
-        filters[i].id = 'filter-' + Math.floor(Math.random()*5000);
-        filters[i].html = $('<div/>', {
-            id: filters[i].id,
-            title: filters[i].filter,
-            html: '<h5>' + filters[i].filter + '</h5>',
-            class: 'filter'
-        });
-        var select = $('<select/>', {id: filters[i].id + '-select'});
-        select.change(function () {
-            var item;
-            $('#' + this.id + ' option:selected').each(function () {
-                item = $(this).val();
-            });
-            console.log('select ' + item);
-        });
-        for (var optionId = 0; optionId < filters[i].options.length; optionId++) {
-            filters[i].options[optionId].html = $('<option/>', {
-                value: filters[i].options[optionId].value,
-                text: filters[i].options[optionId].text
-            });
-            select.append(filters[i].options[optionId].html);
-            filters[i].options[optionId].id = 'option-' + Math.floor(Math.random()*5000);
-        }
-        console.log(select);
-        select.appendTo(filters[i].html);
-        filters[i].html.appendTo($('#filters'));
+        view = new View(FilterView);
+        view.setVar('title', filters[i].filter);        
+        view.setVar('options', filters[i].options);
+        $('#filters').append(view.render());
     }
 }
 
