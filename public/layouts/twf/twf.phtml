@@ -41,7 +41,9 @@ $this->sidebar()->append($news,  $this->translate('Latest news'));
 $this->sidebar()->append($links, $this->translate('Useful links'));
 $this->sidebar()->append($form,  $this->translate('Search'));
 
-$this->headScript()->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
+//$this->headScript()->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
+$this->headScript()->prependFile($this->baseUrl('scripts/view.js'));
+$this->headScript()->prependFile($this->baseUrl('scripts/jquery.min.js'));
 ?>
 <!DOCTYPE HTML>
 <html>
