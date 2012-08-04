@@ -5,13 +5,10 @@ FilterPage =
     build: function ()
     {
         // Setup filters
-        var filters = FilterPage.Filters.getFilters();
-        FilterPage.Filters.updateFilters($('#filter-form'), filters);
-        $('.filter').change(function() {
-            FilterPage.Search.getWorlds(
-                FilterPage.Search.updateWorlds, $('#filter-form').serialize()
-            );
-        });
+        FilterPage.Filters.element = $('#filter-form');
+        FilterPage.Filters.getFilters(
+            FilterPage.Filters.updateFilters
+        );
         
         // Setup world search
         FilterPage.Search.getWorlds(FilterPage.Search.updateWorlds);
@@ -41,37 +38,27 @@ FilterPage =
 FilterPage.Filters = 
 {
 
-    getFilters: function ()
+    element: null,
+    
+    getFilters: function (callback)
     {
-        return [
-            new FilterPage.Types.Filter(
-                'With or without paladin?',
-                [new Option('With paladin', 1), new Option('Without paladin', 0)]
-            ),
-            new FilterPage.Types.Filter(
-                'Nobel item',
-                [new Option('Packages', 1), new Option('Coins', 2)]
-            ),
-            new FilterPage.Types.Filter(
-                'With or without church?',
-                [new Option('With church', 1), new Option('Without church', 0)]
-            ),
-            new FilterPage.Types.Filter(
-                'Speed',
-                [new Option('1', 1), new Option('2', 2), new Option('3', 3)]
-            )
-        ];
+        $.get('/ajax/get-filters', {}, callback, 'json');
     },
     
-    updateFilters: function (element, filters)
+    updateFilters: function (jsonData)
     {
         var view = null;
-        for (var i = 0; i < filters.length; i++) {
-            filters[i].id = i;
+        for (var i = 0; i < jsonData.length; i++) {
             view = new View(FilterPage.Views.FilterView);
-            view.setVars(filters[i]);        
-            $('#filter-form').append(view.render());
+            view.setVars(jsonData[i]);        
+            FilterPage.Filters.element.append(view.render());
         }
+        
+        $('.filter').change(function() {
+            FilterPage.Search.getWorlds(
+                FilterPage.Search.updateWorlds, $('#filter-form').serialize()
+            );
+        });
     }
 }
 
@@ -120,7 +107,7 @@ FilterPage.Views =
 
     FilterView: function (vars)
     {
-        var html = '<h5 class="filter">' + vars.filter + '</h5><select class="filter" name="filter-' + vars.id + '">';
+        var html = '<h5 class="filter">' + vars.title + '</h5><select class="filter" name="filter-' + vars.id + '">';
         for (optionId in vars.options) {
             var id = 'option-' + Math.floor(Math.random()*5000),
                 value = vars.options[optionId].value;
