@@ -5,16 +5,16 @@ class AjaxController extends Zend_Controller_Action
 	public $worlds;
 	public $filters = array(
 	    array(
-	        'title'  => 'With or without paladin?',
+	        'title'  => 'Paladin',
 	        'id'     => 'paladin',
 	        'options' => array(
 	            array(
-	                'text'  => 'With paladin',
-	                'value' => 1
+	                'text'  => 'Yes',
+	                'value' => true
 	            ),
 	            array(
-	                'text'  => 'Without paladin',
-	                'value' => 2
+	                'text'  => 'No',
+	                'value' => false
 	            )
 	        )
 	    ),
@@ -33,21 +33,21 @@ class AjaxController extends Zend_Controller_Action
 	        )
 	    ),
 	    array(
-	        'title'  => 'With or without church?',
+	        'title'  => 'Church',
 	        'id'     => 'church',
 	        'options' => array(
 	            array(
-	                'text'  => 'With church',
-	                'value' => 1
+	                'text'  => 'Yes',
+	                'value' => true
 	            ),
 	            array(
-	                'text'  => 'Without church',
-	                'value' => 2
+	                'text'  => 'No',
+	                'value' => false
 	            )
 	        )
 	    ),
 	    array(
-	        'title'  => 'World speed?',
+	        'title'  => 'World speed',
 	        'id'     => 'speed',
 	        'options' => array(
 	            array(

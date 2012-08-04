@@ -1,2 +1,10 @@
 <?php
+
+foreach ($this->filters as &$filter) {
+    $filter['title'] = $this->translate($filter['title']);
+    foreach ($filter['options'] as &$option) {
+        $option['text'] = $this->translate($option['text']);
+    }
+}
+
 echo json_encode($this->filters);
