@@ -74,11 +74,36 @@ class AjaxController extends Zend_Controller_Action
     
     public function filterWorldsAction()
     {
-        $parameters = $_POST;
+        $parameters = $this->_getAllParams();
+        // @TODO Okay this really needs some improvements...
+        if(isset($parameters['controller'])) {
+            unset($parameters['controller']);
+        }
+        if(isset($parameters['action'])) {
+            unset($parameters['action']);
+        }
+        if (isset($parameters['module'])) {
+            unset($parameters['module']);
+        }
+        $parameters = array_flip($parameters);
+        foreach ($parameters as &$parameter) {
+		    $parameter = lcfirst(Zend_Filter::filterStatic(
+		        substr($parameter, 7), 'Word_DashToCamelCase'
+	        ));
+		}
+		$parameters = array_flip($parameters);
         $bla->uhuh = print_r($parameters, true);
 		
 		$this->view->worlds = array($bla);
-		$this->view->worlds += $this->worlds;
+		
+	    foreach ($this->worlds as $world) {
+	        foreach ($parameters as $option => $value) {
+	            if ((isset($world->$option)) && ($world->$option != $value)) {
+	                continue 2;
+	            }
+	        }
+	        $this->view->worlds[] = $world;
+	    }
     }
     
     public function getFiltersAction()
