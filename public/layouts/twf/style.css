@@ -31,7 +31,7 @@ body {
 }
 #content {
     padding: 20px;
-    
+    overflow: hidden;
 }
 #content:first-letter {
     font-size: 2em;
@@ -143,4 +143,47 @@ ul.language-bar li a {
 ul.language-bar li a:hover, ul.language-bar li.active a, ul.language-bar a:hover {
     color: #FFF;
     background: #1C2C3E url('blue-pattern.png') repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#world-container {
+    padding: 10px;
+}
+
+.world {
+    padding: 20px;
+}
+
+.world h1 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.world ul.filters {
+    list-style-type: none;
+    margin: 0px;
+}
+
+ul.filters span.filter-name {
+    display: inline-block;
+    min-width: 100px;
 }

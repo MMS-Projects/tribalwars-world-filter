@@ -3,7 +3,20 @@ $this->sidebar()->prepend(
     $this->filterWidget(), $this->translate('World filter')
 );
 $this->headScript()->appendFile(
+    'http://malsup.github.com/jquery.form.js'
+);
+$this->headScript()->appendFile(
     $this->baseUrl('scripts/filter.js')
 );
 ?>
 View script for controller <b>FilterPage</b> and script/action name <b>index</b>
+
+<div id="world-container">
+
+</div>
+
+<script>
+    $().ready(function () {
+        FilterPage.build();
+    });	
+</script>
