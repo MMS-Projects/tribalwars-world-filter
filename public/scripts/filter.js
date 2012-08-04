@@ -40,6 +40,11 @@ FilterPage.Filters =
 
     element: null,
     
+    type: {
+        dropdown: 1,
+        radio:    2
+    },
+    
     getFilters: function (callback)
     {
         $.get('/ajax/get-filters', {}, callback, 'json');
@@ -56,7 +61,7 @@ FilterPage.Filters =
         
         $('.filter').change(function() {
             FilterPage.Search.getWorlds(
-                FilterPage.Search.updateWorlds, $('#filter-form').serialize()
+                FilterPage.Search.updateWorlds, $('#filter-form').serializeArray()
             );
         });
     }
@@ -70,14 +75,18 @@ FilterPage.Search =
         if (!requestParams) {
             requestParams = {};
         }
-        console.log(requestParams)	    
+        for (param in requestParams) {
+            if (requestParams[param].value == 'notset') {
+                delete requestParams[param];
+            }
+        }
 	    $.post('/ajax/filter-worlds', requestParams, callback, 'json');
     },
     
     updateWorlds: function (jsonData)
     {
-        console.log('Updating worlds...');
-        console.log(jsonData);
+        //console.log('Updating worlds...');
+        //console.log(jsonData);
         
         $('#world-container').empty();
         
@@ -105,17 +114,39 @@ FilterPage.Search =
 FilterPage.Views =
 {
 
-    FilterView: function (vars)
+    FilterView: function (filter)
     {
-        var html = '<h5 class="filter">' + vars.title + '</h5><select class="filter" name="filter-' + vars.id + '">';
-        for (optionId in vars.options) {
-            var id = 'option-' + Math.floor(Math.random()*5000),
-                value = vars.options[optionId].value;
-            html += '<option id="' + id + '" value="' + value + '">';
-            html += vars.options[optionId].text;
-            html += '</option>';
+        var html = '<h5 class="filter">' + filter.title + '</h5>';
+        
+        if (!filter.type) {
+            if (filter.options.length > 2) {
+                filter.type = FilterPage.Filters.type.dropdown;
+            } else {
+                filter.type = FilterPage.Filters.type.radio;
+            }
         }
-        html += '</select>';
+        
+        if (filter.type == FilterPage.Filters.type.dropdown) {
+            html += '<option value="notset" selected>';
+            html += 'No preference';
+            html += '</option>';
+            html += '<select class="filter" name="filter-' + filter.id + '">';
+            for (optionId in filter.options) {
+                var value = filter.options[optionId].value;
+                html += '<option value="' + value + '">';
+                html += filter.options[optionId].text;
+                html += '</option>';
+            }
+
+            html += '</select>';
+        }
+        if (filter.type == FilterPage.Filters.type.radio) {
+            html += '<input type="radio" class="filter" name="filter-' + filter.id + '" value="notset" checked> No preference<br>';
+            for (optionId in filter.options) {
+                var value = filter.options[optionId].value;
+                html += '<input type="radio" class="filter" name="filter-' + filter.id + '" value="' + value + '"> ' + filter.options[optionId].text + '<br>';
+            }
+        }
         return html;
     },
     
