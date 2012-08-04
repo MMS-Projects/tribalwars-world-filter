@@ -85,13 +85,13 @@ class AjaxController extends Zend_Controller_Action
         if (isset($parameters['module'])) {
             unset($parameters['module']);
         }
-        $parameters = array_flip($parameters);
-        foreach ($parameters as &$parameter) {
-		    $parameter = lcfirst(Zend_Filter::filterStatic(
-		        substr($parameter, 7), 'Word_DashToCamelCase'
+        foreach ($parameters as $key => $value) {
+            unset($parameters[$key]);
+		    $key = lcfirst(Zend_Filter::filterStatic(
+		        substr($key, 7), 'Word_DashToCamelCase'
 	        ));
+	        $parameters[$key] = $value;
 		}
-		$parameters = array_flip($parameters);
         $bla->uhuh = print_r($parameters, true);
 		
 		$this->view->worlds = array($bla);
