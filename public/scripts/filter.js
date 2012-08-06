@@ -12,7 +12,6 @@ FilterPage =
         
         // Setup world search
         FilterPage.Search.getWorlds(FilterPage.Search.updateWorlds);
-        
     },
     
     Views: {
@@ -85,9 +84,6 @@ FilterPage.Search =
     
     updateWorlds: function (jsonData)
     {
-        //console.log('Updating worlds...');
-        //console.log(jsonData);
-        
         $('#world-container').empty();
         
         var view = null, worldHtml = null;
@@ -104,7 +100,6 @@ FilterPage.Search =
 	        }
 	        view.setVar('filters', filters);
 	        worldHtml = view.render();
-	        //console.log(worldHtml);
 	        $('#world-container').append(worldHtml);
 	    }
     }
@@ -130,7 +125,7 @@ FilterPage.Views =
             html += '<option value="notset" selected>';
             html += 'No preference';
             html += '</option>';
-            html += '<select class="filter" name="filter-' + filter.id + '">';
+            html += '<select class="filter" name="filter-' + filter.tag + '">';
             for (optionId in filter.options) {
                 var value = filter.options[optionId].value;
                 html += '<option value="' + value + '">';
@@ -141,10 +136,10 @@ FilterPage.Views =
             html += '</select>';
         }
         if (filter.type == FilterPage.Filters.type.radio) {
-            html += '<input type="radio" class="filter" name="filter-' + filter.id + '" value="notset" checked> No preference<br>';
+            html += '<input type="radio" class="filter" name="filter-' + filter.tag + '" value="notset" checked> No preference<br>';
             for (optionId in filter.options) {
                 var value = filter.options[optionId].value;
-                html += '<input type="radio" class="filter" name="filter-' + filter.id + '" value="' + value + '"> ' + filter.options[optionId].text + '<br>';
+                html += '<input type="radio" class="filter" name="filter-' + filter.tag + '" value="' + value + '"> ' + filter.options[optionId].text + '<br>';
             }
         }
         return html;

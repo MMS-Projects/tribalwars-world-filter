@@ -4,7 +4,7 @@ $filters = array();
 
 foreach ($this->filters as $filter) {
     $entry = new \StdClass;
-    $entry->id    = $filter->tag;
+    $entry->tag   = $filter->tag;
     $entry->title = $this->translate($filter->title);
     $entry->options = array();
     foreach ($filter->options as $option) {
