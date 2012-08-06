@@ -3,6 +3,20 @@
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
     
+    public function _initBaseUrl()
+    {
+        $this->bootstrap('FrontController');
+        
+        $urlParts = explode('/', dirname($_SERVER['SCRIPT_NAME']));
+        if (end($urlParts) == 'public') {
+            array_pop($urlParts);
+        }
+        $baseUrl = implode('/', $urlParts) . '/';
+        
+        $front = $this->getResource('frontController');
+        $front->setBaseUrl($baseUrl);
+    }
+    
     public function _initNavigation()
     {
         $home = new Zend_Navigation_Page_Mvc(array(
@@ -23,8 +37,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     
     public function _initPlugins()
     {
-        $this->bootstrap('FrontController');
-        
         $front = $this->getResource('frontController');
         $front->registerPlugin(new Application_Plugin_NavigationTitle())
             ->registerPlugin(new Application_Plugin_MobileDeviceLayout())
