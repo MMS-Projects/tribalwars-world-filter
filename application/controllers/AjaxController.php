@@ -108,7 +108,8 @@ class AjaxController extends Zend_Controller_Action
     
     public function getFiltersAction()
     {
-        $this->view->filters = $this->filters;
+        $mapper = new Application_Model_FilterMapper;
+        $this->view->filters = $mapper->fetchAll();
     }    
     
     public static function getAvailableWorlds ()

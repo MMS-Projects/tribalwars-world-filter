@@ -1,10 +1,19 @@
 <?php
 
-foreach ($this->filters as &$filter) {
-    $filter['title'] = $this->translate($filter['title']);
-    foreach ($filter['options'] as &$option) {
-        $option['text'] = $this->translate($option['text']);
+$filters = array();
+
+foreach ($this->filters as $filter) {
+    $entry = new \StdClass;
+    $entry->id    = $filter->tag;
+    $entry->title = $this->translate($filter->title);
+    $entry->options = array();
+    foreach ($filter->options as $option) {
+        $oEntry = new \StdClass;
+        $oEntry->text  = $this->translate($option->text);
+        $oEntry->value = $option->value;
+        $entry->options[] = $oEntry;
     }
+    $filters[] = $entry;
 }
 
-echo json_encode($this->filters);
+echo json_encode($filters);
