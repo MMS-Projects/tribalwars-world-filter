@@ -25,7 +25,16 @@
           <layoutScriptFile layoutName="layout"/>
         </layoutScriptsDirectory>
       </layoutsDirectory>
-      <modelsDirectory/>
+      <modelsDirectory>
+        <dbTableDirectory>
+          <dbTableFile dbTableName="Filters"/>
+          <dbTableFile dbTableName="FilterOptions"/>
+        </dbTableDirectory>
+        <modelFile modelName="Filter"/>
+        <modelFile modelName="FilterMapper"/>
+        <modelFile modelName="FilterOption"/>
+        <modelFile modelName="FilterOptionMapper"/>
+      </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
         <viewScriptsDirectory>
