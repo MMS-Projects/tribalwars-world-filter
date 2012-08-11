@@ -40,6 +40,7 @@ EOT;
 $this->sidebar()->append($news,  $this->translate('Latest news'));
 $this->sidebar()->append($links, $this->translate('Useful links'));
 $this->sidebar()->append($form,  $this->translate('Search'));
+$this->sidebar()->prepend($this->facebookLikeBox()->setHref('https://www.facebook.com/TribalWarsFilter'),  $this->translate('Facebook like'));
 
 //$this->headScript()->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
 $this->headScript()->prependFile($this->baseUrl('scripts/view.js'));
@@ -56,6 +57,14 @@ $this->headScript()->prependFile($this->baseUrl('scripts/jquery.min.js'));
     </head>    
     
     <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=268340919940956";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
         <div class="golden-bar"></div>
         <div id="header">
             <h1>Tribal Wars Filter</h1>
@@ -76,6 +85,12 @@ $this->headScript()->prependFile($this->baseUrl('scripts/jquery.min.js'));
                     <?php echo $this->sidebar() ?>
                 </div>
                 <div id="content">
+                <fb:intl desc="Asking whether user wants to give a book to someone">
+  Give <fb:name uid="4800348" useyou="false"/> a copy of "{book-title}"?
+  <fb:intl-token name="book-title">
+      Catcher In the Rye
+  </fb:intl-token>
+</fb:intl>
                     <?php echo $this->layout()->content; ?>
                 </div>
             </div>
