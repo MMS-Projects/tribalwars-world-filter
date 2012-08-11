@@ -1,0 +1,34 @@
+#container {
+    position: fixed;
+    top: 4em;
+    bottom: 3em;
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    
+}
+
+#real-content {
+    height: 100%; 
+    padding: 0px;
+}
+
+#content {
+    padding: 0px;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#sidebar {
+    padding: 0px;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0px;
+    top: auto;
+    padding: 0px;
+    height: 3em;
+}

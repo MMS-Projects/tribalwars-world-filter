@@ -11,6 +11,9 @@ class FilterPageController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
+        if ($this->_hasParam('fb')) {
+            $this->view->layout()->setLayout('twf-fb');
+        }
     }
 
 
