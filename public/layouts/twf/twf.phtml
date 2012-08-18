@@ -85,12 +85,6 @@ $this->headScript()->prependFile($this->baseUrl('scripts/jquery.min.js'));
                     <?php echo $this->sidebar() ?>
                 </div>
                 <div id="content">
-                <fb:intl desc="Asking whether user wants to give a book to someone">
-  Give <fb:name uid="4800348" useyou="false"/> a copy of "{book-title}"?
-  <fb:intl-token name="book-title">
-      Catcher In the Rye
-  </fb:intl-token>
-</fb:intl>
                     <?php echo $this->layout()->content; ?>
                 </div>
             </div>
