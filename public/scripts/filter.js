@@ -134,13 +134,13 @@ FilterPage.Views =
             html += 'No preference';
             html += '</option>';
             html += '<select class="filter" name="filter-' + filter.tag + '">';
+            html += '<option value="notset" selected>No preference</options>';
             for (optionId in filter.options) {
                 var value = filter.options[optionId].value;
                 html += '<option value="' + value + '">';
                 html += filter.options[optionId].text;
                 html += '</option>';
             }
-
             html += '</select>';
         }
         if (filter.type == FilterPage.Filters.type.radio) {
