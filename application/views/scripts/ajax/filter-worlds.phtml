@@ -1,2 +1,18 @@
 <?php
-echo json_encode($this->worlds);
+
+$worlds = array();
+
+foreach ($this->worlds as $world) {
+    $entry = new \StdClass;
+    $entry->tag   = $world->tag;
+    $entry->game_knight = $world->gameKnight;
+    $entry->snob_gold = $world->snobGold;
+    $entry->game_church = $world->gameChurch;
+    $entry->speed = $world->speed;
+    $entry->coord_bonus_villages =$world->coordBonusVillages;
+    $worlds[] = $entry;
+}
+
+$worlds[0]->bla = $this->bla;
+
+echo json_encode($worlds);

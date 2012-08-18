@@ -44,6 +44,8 @@ FilterPage.Filters =
         radio:    2
     },
     
+    filters: {},
+    
     getFilters: function (callback)
     {
         $.get('/ajax/get-filters', {}, callback, 'json');
@@ -56,6 +58,7 @@ FilterPage.Filters =
             view = new View(FilterPage.Views.FilterView);
             view.setVars(jsonData[i]);        
             FilterPage.Filters.element.append(view.render());
+            FilterPage.Filters.filters[jsonData[i].tag] = jsonData[i];
         }
         
         $('.filter').change(function() {
@@ -92,8 +95,13 @@ FilterPage.Search =
             var filters = {};
 	        for (filterName in jsonData[worldId]) {
 	            var filterData = jsonData[worldId][filterName];
-	            if (filterName == 'name') {
-	                view.setVar('name', filterData);
+	            console.log(FilterPage.Filters.filters);
+	            console.log(FilterPage.Filters.filters[filterName]);
+	            if (FilterPage.Filters.filters[filterName]) {
+	                filterName = FilterPage.Filters.filters[filterName].title;
+	            }
+	            if (filterName == 'tag') {
+	                view.setVar('tag', filterData);
 	                continue;
 	            }
 	            filters[filterName] = filterData;
@@ -147,7 +155,7 @@ FilterPage.Views =
     
     WorldView: function (vars)
     {
-	    var worldHtml = '<div class="world"><h1>' + vars.name + '</h1><ul class="filters">';
+	    var worldHtml = '<div class="world"><h1>' + vars.tag + '</h1><ul class="filters">';
 	    for (filterName in vars.filters) {
 	        var filterData = vars.filters[filterName];
 	        worldHtml += '<li><span class="filter-name">' + filterName;

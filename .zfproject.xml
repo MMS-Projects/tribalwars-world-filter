@@ -29,11 +29,14 @@
         <dbTableDirectory>
           <dbTableFile dbTableName="Filters"/>
           <dbTableFile dbTableName="FilterOptions"/>
+          <dbTableFile dbTableName="Worlds"/>
         </dbTableDirectory>
         <modelFile modelName="Filter"/>
         <modelFile modelName="FilterMapper"/>
         <modelFile modelName="FilterOption"/>
         <modelFile modelName="FilterOptionMapper"/>
+        <modelFile modelName="WorldMapper"/>
+        <modelFile modelName="World"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>

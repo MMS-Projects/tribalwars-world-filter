@@ -88,13 +88,11 @@ class AjaxController extends Zend_Controller_Action
         foreach ($parameters as $key => $value) {
             unset($parameters[$key]);
 		    $key = lcfirst(Zend_Filter::filterStatic(
-		        substr($key, 7), 'Word_DashToCamelCase'
+		        substr($key, 7), 'Word_UnderscoreToCamelCase'
 	        ));
 	        $parameters[$key] = $value;
 		}
-        $bla->uhuh = print_r($parameters, true);
-		
-		$this->view->worlds = array($bla);
+		$this->view->worlds = array();
 		
 	    foreach ($this->worlds as $world) {
 	        foreach ($parameters as $option => $value) {
@@ -104,6 +102,7 @@ class AjaxController extends Zend_Controller_Action
 	        }
 	        $this->view->worlds[] = $world;
 	    }
+	    $this->view->bla = print_r($parameters, true);
     }
     
     public function getFiltersAction()
@@ -112,15 +111,17 @@ class AjaxController extends Zend_Controller_Action
         $this->view->filters = $mapper->fetchAll();
     }    
     
-    public static function getAvailableWorlds ()
+    public static function getAvailableWorlds()
     {
-    	$worlds = array();
+        $mapper = new Application_Model_WorldMapper;
+        return $mapper->fetchAll();
+    	/*$worlds = array();
     	for ($i = 0; $i < 20; $i++) {
     		$world = new Application_Model_World();
     		$world->randomize();
     		$worlds[] = $world;
     	}
-    	return $worlds;
+    	return $worlds;*/
     }
 }
 
