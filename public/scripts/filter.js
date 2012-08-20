@@ -4,13 +4,22 @@ FilterPage =
 {
     build: function ()
     {
-        // Setup filters
-        FilterPage.Filters.element = $('#filter-form');
-        FilterPage.Filters.getFilters(function (jsonData) {
-            FilterPage.Filters.updateFilters(jsonData);
+        // Download translations
+        FilterPage.Translate = new Translate();
+        FilterPage.Translate.addText('No preference');
+        FilterPage.Translate.addText('Picture');
+        FilterPage.Translate.addText('Check');
+        FilterPage.Translate.translate(function (jsonData) {
+            FilterPage.Translate.updateStrings(jsonData);
             
-            // Setup world search
-            FilterPage.Search.getWorlds(FilterPage.Search.updateWorlds);
+            // Setup filters
+            FilterPage.Filters.element = $('#filter-form');
+            FilterPage.Filters.getFilters(function (jsonData) {
+                FilterPage.Filters.updateFilters(jsonData);
+                
+                // Setup world search
+                FilterPage.Search.getWorlds(FilterPage.Search.updateWorlds);
+            });
         });
     },
     
@@ -28,8 +37,11 @@ FilterPage =
     
     Search:
     {
-    }
+    },
     
+    Translate:
+    {
+    },
     
 }
 
@@ -162,11 +174,8 @@ FilterPage.Views =
         }
         
         if (filter.type == FilterPage.Filters.type.dropdown) {
-            html += '<option value="notset" selected>';
-            html += 'No preference';
-            html += '</option>';
             html += '<select class="filter" name="filter-' + filter.tag + '">';
-            html += '<option value="notset" selected>No preference</options>';
+            html += '<option value="notset" selected>' + FilterPage.Translate.getTranslation('No preference') + '</options>';
             for (optionId in filter.options) {
                 var value = filter.options[optionId].value;
                 html += '<option value="' + value + '">';
@@ -176,7 +185,7 @@ FilterPage.Views =
             html += '</select>';
         }
         if (filter.type == FilterPage.Filters.type.radio) {
-            html += '<input type="radio" class="filter" name="filter-' + filter.tag + '" value="notset" checked> No preference<br>';
+            html += '<input type="radio" class="filter" name="filter-' + filter.tag + '" value="notset" checked> ' + FilterPage.Translate.getTranslation('No preference') + '<br>';
             for (optionId in filter.options) {
                 var value = filter.options[optionId].value;
                 html += '<input type="radio" class="filter" name="filter-' + filter.tag + '" value="' + value + '"> ' + filter.options[optionId].text + '<br>';
@@ -187,7 +196,10 @@ FilterPage.Views =
     
     WorldView: function (vars)
     {
-        var worldHtml = '<tr class="even world"><td class="first compare">Check</td><td class="thumb">Picture</td><td class="title ellipsis">';
+        var worldHtml = '<tr class="even world">'
+        worldHtml += '<td class="first compare">' + FilterPage.Translate.getTranslation('Check') + '</td>';
+        worldHtml += '<td class="thumb">' + FilterPage.Translate.getTranslation('Picture') + '</td>';
+        worldHtml += '<td class="title ellipsis">';
 	    worldHtml += '<p>' + vars.tag + '</p>';
 	    var subtitle = '';
 	    var i = 1;
