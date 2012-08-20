@@ -6,12 +6,12 @@ FilterPage =
     {
         // Setup filters
         FilterPage.Filters.element = $('#filter-form');
-        FilterPage.Filters.getFilters(
-            FilterPage.Filters.updateFilters
-        );
-        
-        // Setup world search
-        FilterPage.Search.getWorlds(FilterPage.Search.updateWorlds);
+        FilterPage.Filters.getFilters(function (jsonData) {
+            FilterPage.Filters.updateFilters(jsonData);
+            
+            // Setup world search
+            FilterPage.Search.getWorlds(FilterPage.Search.updateWorlds);
+        });
     },
     
     Views: {
@@ -48,11 +48,13 @@ FilterPage.Filters =
     
     getFilters: function (callback)
     {
+        console.log('Getting filters');
         $.get('/ajax/get-filters', {}, callback, 'json');
     },
     
     updateFilters: function (jsonData)
     {
+        console.log('Saving filters in memory');
         var view = null;
         for (var i = 0; i < jsonData.length; i++) {
             view = new View(FilterPage.Views.FilterView);
@@ -66,6 +68,16 @@ FilterPage.Filters =
                 FilterPage.Search.updateWorlds, $('#filter-form').serializeArray()
             );
         });
+    },
+    getValueName: function (tag, value) {
+        var filter = FilterPage.Filters.filters[tag];
+        for (optionId in filter.options) {
+            var option = filter.options[optionId];
+            if (option.value == value) {
+                return option.text;
+            }
+        }
+        return value;
     }
 }
 
@@ -93,9 +105,24 @@ FilterPage.Search =
 	    for (worldId in jsonData) {
 	        view = new View(FilterPage.Views.WorldView);
             var filters = {};
-	        for (filterName in jsonData[worldId]) {
-	            var filterData = jsonData[worldId][filterName];
-	            console.log(FilterPage.Filters.filters);
+	        for (tag in jsonData[worldId]) {
+	            if (tag == 'tag') {
+	                view.setVar('tag', jsonData[worldId][tag]);
+	                continue;
+	            }
+	            if (!FilterPage.Filters.filters[tag]) {
+	                continue;
+	            }
+	            var filterData = {
+	                tag: tag,
+	                title: FilterPage.Filters.filters[tag].title,
+	                value: jsonData[worldId][tag],
+	                valueText: FilterPage.Filters.getValueName(
+	                    tag, jsonData[worldId][tag]
+                    )
+	            };
+	            /*var filterData = jsonData[worldId][filterName];
+	            //console.log(FilterPage.Filters.filters);
 	            console.log(FilterPage.Filters.filters[filterName]);
 	            if (FilterPage.Filters.filters[filterName]) {
 	                filterName = FilterPage.Filters.filters[filterName].title;
@@ -103,13 +130,18 @@ FilterPage.Search =
 	            if (filterName == 'tag') {
 	                view.setVar('tag', filterData);
 	                continue;
-	            }
-	            filters[filterName] = filterData;
+	            }*/
+	            filters[tag] = filterData;
 	        }
 	        view.setVar('filters', filters);
 	        worldHtml = view.render();
 	        $('#world-container').append(worldHtml);
 	    }
+	    $('.show-details').click(function (e) {
+	        var detailsRow = ((e.target.parentNode.rowIndex + 1) / 2) - 1;
+	        $('.world-details').eq(detailsRow).toggle('fast');
+	        $('#content').scrollTo($('.world').eq(detailsRow));
+	    });
     }
     
 }
@@ -155,13 +187,43 @@ FilterPage.Views =
     
     WorldView: function (vars)
     {
-	    var worldHtml = '<div class="world"><h1>' + vars.tag + '</h1><ul class="filters">';
-	    for (filterName in vars.filters) {
-	        var filterData = vars.filters[filterName];
-	        worldHtml += '<li><span class="filter-name">' + filterName;
-            worldHtml += ':</span> ' + filterData + '</li>';
+        var worldHtml = '<tr class="even world"><td class="first compare">Check</td><td class="thumb">Picture</td><td class="title ellipsis">';
+	    worldHtml += '<p>' + vars.tag + '</p>';
+	    var subtitle = '';
+	    var i = 1;
+	    for (tag in vars.filters) {
+	        var filter = vars.filters[tag];
+	        subtitle += filter.title + ': ' + filter.valueText;
+	        if (i == 3) {
+	            break;
+	        } else {
+	            subtitle += ' - ';
+	        }
+	        ++i;
 	    }
-	    worldHtml += '</ul></div>';
+	    worldHtml += '<p class="subtitle"> ' + subtitle + '.</p>';
+	    worldHtml += '</td>'
+	    i = 1;
+	    for (tag in vars.filters) {
+	        var filterData = FilterPage.Filters.getValueName(
+	            tag, vars.filters[tag].value
+            );
+	        worldHtml += '<td class="spec" title="' + filterData + '">' + filterData + '</td>';
+	        if (i == 2) {
+	            break;
+	        } else {
+	            subtitle += ' - ';
+	        }
+	        ++i;
+	    }
+	    worldHtml += '<td class="players"><p>1.000.000</p><p class="subtitle">80.000</p></td><td class="show-details last"></td></tr>';
+	    worldHtml += '<tr class="even world-details"><td colspan="7">';
+	    for (tag in vars.filters) {
+	        var filter = vars.filters[tag];
+	        worldHtml += '<li><span class="filter-name">' + filter.title;
+            worldHtml += ':</span> ' + filter.valueText + '</li>';
+	    }
+	    worldHtml += '</td></tr>';
 	    return worldHtml;
 	}
     

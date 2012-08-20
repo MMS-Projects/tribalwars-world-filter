@@ -16,6 +16,7 @@ body {
 #real-content {
     overflow: hidden;
     font-family: 'Lucida Blackletter', 'UnifrakturCook', 'Olde English', cursive;
+    font-family: 'Times New Roman';
 }
 #container {
     position: relative;
@@ -166,19 +167,44 @@ ul.language-bar li a:hover, ul.language-bar li.active a, ul.language-bar a:hover
 
 
 #world-container {
-    padding: 10px;
+    padding: 0px;
 }
 
-.world {
-    padding: 20px;
+.world td {
+    border-width: 1px;
+    padding: 0px;
+    
+    border-bottom-style: solid;
+}
+.world td.first {
+    border-left-style: solid;
+}
+.world td.last {
+    border-right-style: solid;
+}
+
+.world:first-child td {
+    border-top-style: solid;
+}
+
+.world p {
+    margin: 0;
+}
+.world .title p {
+    font-weight: bold;
+}
+.world p.subtitle {
+    font-weight: inherit;
+    font-size: 0.9em;
 }
 
 .world h1 {
     margin: 0;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .world ul.filters {
+    display: none;
     list-style-type: none;
     margin: 0px;
 }
@@ -186,4 +212,18 @@ ul.language-bar li a:hover, ul.language-bar li.active a, ul.language-bar a:hover
 ul.filters span.filter-name {
     display: inline-block;
     min-width: 100px;
+}
+
+.world-details {
+    display: none;
+}
+.show-details {
+    /*background-image: url('http://tweakimg.net/g/pw/arrow_down_white.gif');*/
+    width: 9px;
+    height: 9px;
+    cursor: pointer;
+}
+
+.filter-table {
+    width: 100%;
 }

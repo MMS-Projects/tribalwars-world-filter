@@ -5,14 +5,41 @@ $this->sidebar()->prepend(
 $this->headScript()->appendFile(
     'http://malsup.github.com/jquery.form.js'
 );
+$this->headScript()->appendFile('https://raw.github.com/flesler/jquery.scrollTo/master/jquery.scrollTo.js');
 $this->headScript()->appendFile(
     $this->baseUrl('scripts/filter.js')
 );
 ?>
 
-<div id="world-container">
+Yay filter-page
 
-</div>
+<table class="filter-table" cellspacing="0">
+    <colgroup>
+        <col width="24">
+        <col width="75">
+        <col>
+        <col width="72">
+        <col width="72">
+        <col width="82">
+        <col width="24">
+    </colgroup>
+    <thead>
+	    <tr>
+		    <th>&nbsp;</th> 
+		    <th colspan="2" class="spec-before selectable">
+		        <img id="specSelect" src="http://tweakimg.net/g/if/icons/add.png" title="<?php echo $this->translate('Pick filtercolumns'); ?>">
+			    <div class="sortOptions">Sort options</div>
+		    </th>
+	        <th class="spec"> <?php echo $this->translate('Paladin'); ?></th>
+	        <th class="spec"> <?php echo $this->translate('Nobel item'); ?></th>
+	        <th class="spec-after"> <?php echo $this->translate('Players'); ?></th>
+		    <th>&nbsp;</th>
+	    </tr>
+    </thead>
+    <tbody id="world-container">
+	    hhh
+    </tbody>
+</table>
 
 <script>
     $().ready(function () {
