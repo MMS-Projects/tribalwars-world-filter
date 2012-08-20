@@ -57,7 +57,7 @@ if ($options['db']['adapter'] == 'PDO_SQLITE') {
     // let the user know whats going on (we are actually creating a
     // database here)
     if ('testing' != APPLICATION_ENV) {
-        echo 'Writing Database Guestbook in (control-c to cancel): ' . PHP_EOL;
+        echo 'Writing World Filter in (control-c to cancel): ' . PHP_EOL;
         for ($x = 5; $x > 0; $x--) {
             echo $x . "\r"; sleep(1);
         }

@@ -18,3 +18,12 @@ CREATE TABLE "filter_options" (
     "filter_id" INTEGER
 );
 
+CREATE TABLE "worlds" (
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "tag" TEXT,
+    "game_knight" INTEGER,
+    "snob_gold" INTEGER,
+    "game_church" INTEGER,
+    "speed" REAL,
+    "coord_bonus_villages" INTEGER
+);
