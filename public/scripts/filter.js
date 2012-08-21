@@ -58,6 +58,8 @@ FilterPage.Filters =
     
     filters: {},
     
+    used: {},
+    
     getFilters: function (callback)
     {
         console.log('Getting filters');
@@ -101,9 +103,12 @@ FilterPage.Search =
         if (!requestParams) {
             requestParams = {};
         }
+        FilterPage.Filters.used = {};
         for (param in requestParams) {
             if (requestParams[param].value == 'notset') {
                 delete requestParams[param];
+            } else {
+                FilterPage.Filters.used[requestParams[param].name.substr(7)] = requestParams[param].value;
             }
         }
 	    $.post('/ajax/filter-worlds', requestParams, callback, 'json');
@@ -204,36 +209,40 @@ FilterPage.Views =
 	    var subtitle = '';
 	    var i = 1;
 	    for (tag in vars.filters) {
-	        var filter = vars.filters[tag];
-	        subtitle += filter.title + ': ' + filter.valueText;
-	        if (i == 3) {
-	            break;
-	        } else {
-	            subtitle += ' - ';
+	        if (!FilterPage.Filters.used[tag]) {
+	            var filter = vars.filters[tag];
+	            subtitle += filter.title + ': ' + filter.valueText;
+	            if (i == 3) {
+	                break;
+	            } else {
+	                subtitle += ' - ';
+	            }
+	            ++i;
 	        }
-	        ++i;
 	    }
 	    worldHtml += '<p class="subtitle"> ' + subtitle + '.</p>';
 	    worldHtml += '</td>'
 	    i = 1;
 	    for (tag in vars.filters) {
-	        var filterData = FilterPage.Filters.getValueName(
-	            tag, vars.filters[tag].value
+            var filterData = FilterPage.Filters.getValueName(
+                tag, vars.filters[tag].value
             );
-	        worldHtml += '<td class="spec" title="' + filterData + '">' + filterData + '</td>';
-	        if (i == 2) {
-	            break;
-	        } else {
-	            subtitle += ' - ';
-	        }
-	        ++i;
+            worldHtml += '<td class="spec" title="' + filterData + '">' + filterData + '</td>';
+            if (i == 2) {
+                break;
+            } else {
+                subtitle += ' - ';
+            }
+            ++i;
 	    }
 	    worldHtml += '<td class="players"><p>1.000.000</p><p class="subtitle">80.000</p></td><td class="show-details last"></td></tr>';
 	    worldHtml += '<tr class="even world-details"><td colspan="7">';
 	    for (tag in vars.filters) {
-	        var filter = vars.filters[tag];
-	        worldHtml += '<li><span class="filter-name">' + filter.title;
-            worldHtml += ':</span> ' + filter.valueText + '</li>';
+	        if (!FilterPage.Filters.used[tag]) {
+	            var filter = vars.filters[tag];
+	            worldHtml += '<li><span class="filter-name">' + filter.title;
+                worldHtml += ':</span> ' + filter.valueText + '</li>';
+            }
 	    }
 	    worldHtml += '</td></tr>';
 	    return worldHtml;
