@@ -72,7 +72,7 @@ $this->headScript()->prependFile($this->baseUrl('scripts/jquery.min.js'));
         </div>
         <div id="container">
             <div class="golden-bar"></div>
-            <?php echo $this->languageBar(array('nl', 'us', 'de', 'fr')); ?>
+            <?php echo $this->communityBar($this->communities); ?>
             <div class="golden-bar"></div>
             <div id="menu-bar">
                 <?php 

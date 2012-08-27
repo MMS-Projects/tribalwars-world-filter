@@ -33,6 +33,7 @@
           <dbTableFile dbTableName="Filters"/>
           <dbTableFile dbTableName="FilterOptions"/>
           <dbTableFile dbTableName="Worlds"/>
+          <dbTableFile dbTableName="Communities"/>
         </dbTableDirectory>
         <modelFile modelName="Filter"/>
         <modelFile modelName="FilterMapper"/>
@@ -40,6 +41,8 @@
         <modelFile modelName="FilterOptionMapper"/>
         <modelFile modelName="WorldMapper"/>
         <modelFile modelName="World"/>
+        <modelFile modelName="Community"/>
+        <modelFile modelName="CommunityMapper"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
