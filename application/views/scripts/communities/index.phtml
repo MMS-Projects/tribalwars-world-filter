@@ -1,0 +1,29 @@
+<?php
+preg_match(
+    '/^((?P<community>[a-z]{2,3})\.)?(?P<domain>.*)$/', $_SERVER['HTTP_HOST'],
+    $matches
+);
+list($domain, $country) = array($matches['domain'], $matches['community']);
+?>
+<table>
+    <tr>
+        <th></th>
+        <th><?php echo $this->translate('Tag'); ?></th>
+        <th><?php echo $this->translate('World Filter'); ?></th>
+        <th><?php echo $this->translate('Game'); ?></th>
+    </tr>
+    <?php
+        foreach ($this->communities as $community):
+            $url = sprintf(
+                '%s.%s%s', $community->tag, $domain, $this->url()
+            );
+            $paddingLeft = 16 + (($community->spritePlace - 1) * 32);
+    ?>
+    <tr>
+        <td style="background:url(http://gamebar.innogames.de/sprite.png) no-repeat 0px -<?php echo $paddingLeft; ?>px; padding-left: 20px;"></td>
+        <td><?php echo $community->tag; ?></td>
+        <td><a href="http://<?php echo $url; ?>"><?php echo $url; ?></a></td>
+        <td><a href="http://<?php echo $community->url; ?>" target="_BLANK"><?php echo $community->url; ?></a></td>
+    </tr>
+    <?php endforeach; ?>
+</table>

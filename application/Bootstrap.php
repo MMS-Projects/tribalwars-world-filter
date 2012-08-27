@@ -29,8 +29,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             'controller' => 'filter-page',
             'label'      => 'World filter'
         ));
+        $communtiesPage = new Zend_Navigation_Page_Mvc(array(
+            'action'     => 'index',
+            'controller' => 'communities',
+            'label'      => 'Communities'
+        ));
         $container = new Zend_Navigation(array(
-            $home, $filterPage
+            $home, $communtiesPage, $filterPage
         ));
         Zend_Registry::set('Zend_Navigation', $container);
     }
