@@ -51,3 +51,11 @@ INSERT INTO "worlds" VALUES(28,'nl28',2,1,0,1.0,0);
 INSERT INTO "worlds" VALUES(29,'nl29',1,1,0,1.0,5);
 INSERT INTO "worlds" VALUES(30,'nls1',1,1,0,400.0,100);
 INSERT INTO "worlds" VALUES(31,'nlc1',1,1,0,2.0,0);
+
+INSERT INTO "communities" VALUES(1,'nl','tribalwars.nl',2);
+INSERT INTO "communities" VALUES(2,'de','die-staemme.de',15);
+INSERT INTO "communities" VALUES(3,'uk','tribalwars.co.uk',27);
+INSERT INTO "communities" VALUES(4,'ts','tribalwarsmasters.net',37);
+INSERT INTO "communities" VALUES(5,'fr','guerretribale.fr',23);
+INSERT INTO "communities" VALUES(6,'us','tribalwars.us',36);
+INSERT INTO "communities" VALUES(7,'net','tribalwars.net',3);

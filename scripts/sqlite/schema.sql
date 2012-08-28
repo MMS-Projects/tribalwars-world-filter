@@ -27,3 +27,10 @@ CREATE TABLE "worlds" (
     "speed" REAL,
     "coord_bonus_villages" INTEGER
 );
+
+CREATE TABLE communities (
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "tag" TEXT,
+    "url" TEXT,
+    "sprite_place" INTEGER
+);
